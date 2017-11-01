@@ -98,13 +98,13 @@ type_compliance_map = {
     2: [16, 17],
 }
 
-def rand_gen_policies(population):
 
+def rand_gen_policies(indiv_size):
     policy_set = list()
-    while population != len(policy_set):
+    while indiv_size != len(policy_set):
         policy = gen_policy()
-        print("Generated policy", policy)
         if check_policy(policy):
+            print("Generated policy", policy)
             policy_set.append(policy)
 
     return policy_set

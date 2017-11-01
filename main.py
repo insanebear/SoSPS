@@ -1,4 +1,5 @@
-import random, policy_op, json_handle, policy_eval
+import random, json_handle, policy_eval
+from policy_op import rand_gen_policies
 from deap import tools, base, creator
 
 # create class - first: name, second: base, rest params: variable and values
@@ -12,10 +13,7 @@ toolbox = base.Toolbox()
 # register a function in the toolbox with alias.
 # first: alias, second: method, rest params: arguments
 # policy set (10 will be the the number of polices in a policy set)
-toolbox.register("individual", tools.initRepeat, creator.Individual, random.random, n=IND_SIZE)
-
-policy_population = toolbox.population(n=50) # 여기에서 위에 있는 population값 조절할 수 있네 그럼 individual도 조절 가능할 것 같은데
-
+toolbox.register("individual", rand_gen_policies, indiv_size=IND_SIZE)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
 toolbox.register("mate", tools.cxTwoPoint)
@@ -25,17 +23,17 @@ toolbox.register("evaluate", policy_eval.evaluate)
 
 
 def main():
-    pop = toolbox.population(n=50)
+    p_population = toolbox.population(n=50)
     CXPB, MUTPB, NGEN = 0.5, 0.2, 40
 
     # Evaluate the entire population
-    fitnesses = map(toolbox.evaluate, pop)
-    for ind, fit in zip(pop, fitnesses):
+    fitnesses = map(toolbox.evaluate, p_population)
+    for ind, fit in zip(p_population, fitnesses):
         ind.fitness.values = fit
 
     for g in range(NGEN):
         # Select the next generation individuals
-        offspring = toolbox.select(pop, len(pop))
+        offspring = toolbox.select(p_population, len(p_population))
         # Clone the selected individuals
         offspring = list(map(toolbox.clone, offspring))
 
@@ -58,6 +56,8 @@ def main():
             ind.fitness.values = fit
 
         # The population is entirely replaced by the offspring
-        pop[:] = offspring
+        p_population[:] = offspring
 
-    return pop
+    return p_population
+
+print(main())
