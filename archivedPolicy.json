@@ -1,0 +1,81 @@
+[
+  {
+    "policyType": "Action",
+    "conditions": [
+      {
+        "variable": "MCILevel",
+        "operator": "==",
+        "value": "1"
+      },
+      {
+        "variable": "DamageType",
+        "operator": "==",
+        "value": "Fire"
+      },
+      {
+        "variable": "Story",
+        "operator": "==",
+        "value": "4"
+      },
+      {
+        "variable": "Time",
+        "operator": "==",
+        "value": "2"
+      }
+    ],
+    "role": "RESCUE",
+    "action": {
+      "actionName": "Select",
+      "actionMethod": "Severity",
+      "methodValue": "0"
+    },
+    "minCompliance": -1,
+    "enforce": false
+  },
+  {
+    "policyType": "Compliance",
+    "conditions": [
+      {
+        "variable": "MCILevel",
+        "operator": "==",
+        "value": "1"
+      },
+      {
+        "variable": "DamageType",
+        "operator": "==",
+        "value": "Collapse"
+      }
+    ],
+    "role": "RESCUE",
+    "action": {
+      "actionName": "Stage",
+      "actionMethod": "",
+      "methodValue": ""
+    },
+    "minCompliance": 0.8,
+    "enforce": false
+  },
+  {
+    "policyType": "Compliance",
+    "conditions": [
+      {
+        "variable": "MCILevel",
+        "operator": "==",
+        "value": "5"
+      },
+      {
+        "variable": "DamageType",
+        "operator": "==",
+        "value": "Collapse"
+      }
+    ],
+    "role": "TRANSPORT",
+    "action": {
+      "actionName": "Load",
+      "actionMethod": "",
+      "methodValue": ""
+    },
+    "minCompliance": 0.7,
+    "enforce": false
+  }
+]
