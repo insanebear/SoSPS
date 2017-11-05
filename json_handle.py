@@ -169,7 +169,7 @@ index_map = {
 
 
 def read_policy(filename):
-    policy_set =[]
+    policy_set = list()
     with open(filename) as f:
         for line in f:
             while True:
@@ -244,7 +244,6 @@ def read_policy(filename):
                             if prev_policy[idx] is None:
                                 prev_policy[idx] = -1
                         policy_set.append(prev_policy)
-
                     break
                 except ValueError:
                     # Not yet a complete JSON value
@@ -253,7 +252,7 @@ def read_policy(filename):
     return policy_set
 
 
-def write_policy(numeric_policy): # 이름 뭐로하지.-_-
+def poli_to_dict(numeric_policy): # 이름 뭐로하지.-_-
     """translate numbers into scenario-dependent strings
     http://stackabuse.com/reading-and-writing-json-to-a-file-in-python/
     dump json"""
@@ -312,10 +311,22 @@ def write_policy(numeric_policy): # 이름 뭐로하지.-_-
     policy['minCompliance'] = numeric_policy[16]
 
     # "enforced"
-    policy['enforced'] = val_to_bool(numeric_policy[17])
+    policy['enforce'] = val_to_bool(numeric_policy[17])
 
-    print(json.dumps(policy, indent=4))
+    return policy
 
+
+def make_policy_json(filename, individual):
+    policy_set = list()
+
+    for policy in individual:
+        policy_dict = poli_to_dict(policy)
+        policy_set.append(policy_dict)
+
+    dir_path = "./json/"
+    file_path = dir_path+filename
+    with open(file_path, 'w') as f:
+        f.write(json.dumps(policy_set, indent=4))
 
 def val_to_bool(v):
     return v is 1
