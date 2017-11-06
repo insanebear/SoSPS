@@ -1,5 +1,6 @@
 import random
 from json_handle import read_policy
+from policy_check import check_policy, if_contains_all
 
 """ Representation of a policy
         ------------------------------------------------------------------------
@@ -116,137 +117,45 @@ def gen_policy():
     policy = [None] * 18
 
     # select a policy type
-    policy_type = sel_rand_val(0)
+    policy_type = select_value_by_idx(0)
     policy[0] = policy_type
     # select a role
-    role = sel_rand_val(5)
+    role = select_value_by_idx(5)
     policy[5] = role
     # select an action according to the selected role
     action_list = role_action_map[role]
-    action_name = action_list[sel_rand_idx(action_list)]
+    idx = select_idx(action_list)
+    action_idx = action_list[idx]
 
     if policy_type == 1:    # action policy
-        action_method = sel_rand_val(action_name)
-        policy[action_name] = action_method
-        policy[17] = sel_rand_val(17)
+        # action method
+        action_method = select_value_by_idx(action_idx)
+        policy[action_idx] = action_method
+        # enforce
+        policy[17] = select_value_by_idx(17)
     elif policy_type == 2:  # compliance policy
-        policy[action_name] = 0                 # 0 as a check sign
-        policy[16] = sel_rand_val(16)  # minimum compliance
+        # action name mark
+        policy[action_idx] = 0
+        # minimum compliance
+        policy[16] = select_value_by_idx(16)
 
+    # select conditions
     candid_cond_list = role_cond_map[role]
     num_cond = random.randint(1, len(candid_cond_list))     # how many conditions?
+    copied_list = list(candid_cond_list)
 
-    for i in range(0, num_cond-1):
-        copied_list = list(candid_cond_list)
+    for i in range(0, num_cond):
+        idx = select_idx(copied_list)
+        cond_idx = copied_list[idx]
+        policy[cond_idx] = select_value_by_idx(cond_idx)
+        del copied_list[idx]
 
-        cond_name = copied_list[sel_rand_idx(copied_list)]
-        copied_list.remove(cond_name)
-        policy[cond_name] = sel_rand_val(cond_name)
-
-    # make rest of indices to invalid(-1
+    # make rest of indices to invalid(-1)
     for pol_idx in range(0, len(policy)):
         if policy[pol_idx] is None:
             policy[pol_idx] = -1
 
     return policy
-
-
-def check_policy(policy):
-    # check role (by value) - A policy must contain role-value.
-    check_value(5, policy)
-    # check conditions (by value) - A policy must contain at least 1 condition.
-    cond_idx = list(policy_element['conditions'])
-    first_idx = cond_idx[0]
-    cond_list = policy[first_idx : first_idx+len(cond_idx)]
-    if if_contains_all(-1, cond_list):
-        # if conditions are all deactivated, (have -1)
-        return False
-    # check action by role
-    if not check_by_role(policy):
-        return False
-    # check action by policy type
-    if not check_by_policy_type(policy):
-        return False
-    # check values in array
-    for p_idx in range(0, len(policy)):
-        if policy[p_idx] in [-1, 0] or p_idx == 15:
-            continue
-        else:
-            if not check_value(p_idx, policy):
-                return False
-    return True
-
-
-def check_by_policy_type(policy):
-    # action_list = policy[6:15]
-    action_idx = policy_element['action']
-    first_idx = action_idx[0]
-    action_list = policy[first_idx:first_idx+len(action_idx)-1]   # method_val is not primary.
-    policy_type = policy[0]
-    if policy_type == 1:  # 'Action'
-        # check action indices
-        if if_contains_any(0, action_list):
-            # 0 should not be in action policy.
-            return False
-        if if_contains_all(-1, action_list):
-            # At least one action should be described.
-            return False
-
-        # check min_compliance
-        if policy[16] != -1:
-            return False
-        # check enforced
-        if policy[17] not in {0, 1}:
-            return False
-
-    elif policy_type == 2:    # 'Compliance'
-        if not if_contains_any(0, action_list):
-            # values should have at least one of 0
-            print(11)
-            return False
-        if not if_contains_all_list([0, -1], action_list):
-            # values should have 0 or -1
-            return False
-        if 0 > policy[16] or policy[16] >= 1:
-            # compliance value should be in between 0 and 1
-            return False
-        if policy[17] != -1:
-            # enforce value should be -1
-            return False
-    else:
-        return False
-
-    return True
-
-
-def check_by_role(policy):
-    role = policy[5]
-    candid_act_idx = role_action_map[role]
-    first_idx = candid_act_idx[0]
-    action_elem = policy[first_idx:first_idx+len(candid_act_idx)]
-    if if_contains_all(-1, action_elem):
-        return False
-    else:
-        return True
-
-
-def check_value(idx, policy):
-    if policy[idx] not in value_map[idx]:
-        return False
-    else:
-        return True
-
-
-def if_contains_all(value, t_list):
-    return all(i == value for i in t_list)
-
-
-def if_contains_any(value, t_list):
-    return any(i == value for i in t_list)
-
-
-def if_contains_all_list(v_list, t_list):
-    return all(i in v_list for i in t_list)
 
 
 def mut_policy(policy_set, indpb):
@@ -266,156 +175,157 @@ def mut_policy(policy_set, indpb):
             del_idx = random.randint(0, len(policy_set)-1)
             del policy_set[del_idx]
     elif mut_type_prob < 1.0:
-        for policy in policy_set:
+        for idx in range(0, len(policy_set)-1):
             if random.random() < indpb:
-                # print("Before", policy)
-                mut_by_modify(policy)
-                # print("After", policy)
-
+                copied_policy = list(policy_set[idx])
+                copied_policy = mut_by_modify(copied_policy)
+                while not check_policy(copied_policy):
+                    copied_policy = list(policy_set[idx])
+                    copied_policy = mut_by_modify(copied_policy)
+                policy_set[idx] = copied_policy
     return policy_set,
 
 
 def mut_by_modify(policy):
     # Pick random numbers of policies from the individual.
     # Change values in contents based on relationships.
-    change_content = ""
+    change_category = ""
 
+    # gather categories according to policy type
+    # select a category to change
     if policy[0] == 1:        # action policy
-        change_category = ['role', 'condition', 'actionName', 'actionMethod', 'actionValue', 'enforce']
-        change_idx = sel_rand_idx(change_category)
-        if change_idx == 4:
-            while policy[11] == -1 and policy[14] == -1:
-                change_idx = sel_rand_idx(change_category)
-        change_content = change_category[change_idx]
+        change_list = ['role', 'condition', 'actionName', 'actionMethod', 'methodValue', 'enforce']
+        if policy[11] == -1 and policy[14] == -1:   # otherwise 11, 14, except action value
+            change_list.remove("methodValue")
+        change_idx = select_idx(change_list)
+        change_category = change_list[change_idx]
     elif policy[0] == 2:      # compliance policy
-        change_category = ['role', 'condition', 'actionName', 'compliance']
-        change_idx = random.randint(0, len(change_category)-1)
-        change_content = change_category[change_idx]
+        change_list = ['role', 'condition', 'actionName', 'compliance']
+        change_idx = select_idx(change_list)
+        change_category = change_list[change_idx]
 
     role = policy[5]
-    if change_content == "role":
-        role_list = value_map[5]
+    if change_category == "role":
+        # If you change role, all other elements should be changed too.
+        # select a new role
         cur_role = role
         candid_roles = list()
-        for role_idx in role_list:
+        for role_idx in value_map[5]:
             if role_idx == cur_role:
                 continue
             candid_roles.append(role_idx)
+        new_role = candid_roles[select_idx(candid_roles)]
         # set a new role
-        new_role = candid_roles[random.randint(0, len(candid_roles)-1)]
         policy[5] = new_role
-        for action in list(policy_element["action"]):
-            policy[action] = -1     # reset actions
+
+        # reset if role-dependent condition exists
+        role_cond_indices = role_cond_map[role]
+        condition_indices = list(policy_element['conditions'])
+        for idx in condition_indices:
+            if idx not in role_cond_indices and policy[idx] != 1:
+                policy[idx] = -1
+
+        # If there is no condition after resetting role-dependent conditions,
+        # (but do nothing if at least one condition)
+        cond_values = get_policy_val_list(role_cond_indices, policy)
+        if if_contains_all(-1, cond_values):
+            # Conditions are all empty.
+            candid_cond_list = role_cond_map[role]
+            num_cond = random.randint(1, len(candid_cond_list))  # how many conditions?
+            copied_list = list(candid_cond_list)
+
+            for i in range(0, num_cond):
+                idx = select_idx(copied_list)
+                cond_idx = copied_list[idx]
+                policy[cond_idx] = select_value_by_idx(cond_idx)
+                del copied_list[idx]
 
         # select a new action name according to a new role
+        for action in list(policy_element["action"]):
+            policy[action] = -1  # reset actions
         candid_actions = role_action_map[new_role]
-        new_action_idx = sel_rand_idx(candid_actions)
+        new_action_idx = select_idx(candid_actions)
         new_action = candid_actions[new_action_idx]
         if policy[0] == 1:       # if policy type is action,
-            # select a new method
-            policy[new_action] = sel_rand_val(new_action)
+            # select and set a new method
+            policy[new_action] = select_value_by_idx(new_action)
         elif policy[0] == 2:     # else if policy type is compliance,
-            # mark on the action
+            # select and mark on the action
             policy[new_action] = 0
-    elif change_content == "condition":     # TODO refactoring here
+    elif change_category == "condition":     # TODO refactoring here
         # change only once!
-        cond_by_role = role_cond_map[role]
-        prob = random.random()
-        if not check_full_description(policy, cond_by_role):
-            candid_cond = list()
-            if prob < 0.2:
-                # add new a condition
-                for cond in cond_by_role:
-                    if policy[cond] != -1:
-                        continue
-                    candid_cond.append(cond)    # select candidate conditions
-                change_cond_idx = sel_rand_idx(candid_cond)
-                policy[change_cond_idx] = sel_rand_val(change_cond_idx)
-            elif prob < 0.4:
-                # delete a condition
-                candid_cond = list()
-                for cond_idx in cond_by_role:
-                    # find conditions which have its value
-                    if policy[cond_idx] != -1:
-                        candid_cond.append(cond_idx)
-                if len(candid_cond) > 1:
-                    target_idx = sel_rand_idx(candid_cond)
-                    policy[target_idx] = -1     # delete the value
-            elif prob < 1.0:
-                # change an original condition
-                candid_cond = list()
-                for cond_idx in cond_by_role:
-                    # find conditions which have its value
-                    if policy[cond_idx] != -1:
-                        candid_cond.append(cond_idx)
-                target_idx = sel_rand_idx(candid_cond)
-                new_cond_val = sel_rand_val(target_idx)
-                policy[target_idx] = new_cond_val
-        else:
-            if prob < 0.5:      # delete a condition
-                candid_cond = list()
-                for cond_idx in cond_by_role:
-                    # find conditions which have its value
-                    if policy[cond_idx] != -1:
-                        candid_cond.append(cond_idx)
-                if len(candid_cond) > 1:
-                    target_idx = sel_rand_idx(candid_cond)
-                    policy[target_idx] = -1  # delete the value
-            elif prob < 1.0:    # change an original condition
-                # change an original condition
-                candid_cond = list()
-                for cond_idx in cond_by_role:
-                    # find conditions which have its value
-                    if policy[cond_idx] != -1:
-                        candid_cond.append(cond_idx)
-                target_idx = sel_rand_idx(candid_cond)
-                new_cond_val = sel_rand_val(target_idx)
-                policy[target_idx] = new_cond_val
-    elif change_content == "actionName":
+        condition_indices = role_cond_map[role]
+
+        mutate_categories = ['add', 'delete', 'modify']
+        if check_full_description(policy, condition_indices):       # if all conditions are activated,
+            mutate_categories.remove('add')
+        elif check_one_description(policy, condition_indices):
+            mutate_categories.remove('delete')
+        mutate_category = mutate_categories[select_idx(mutate_categories)]
+
+        candid_cond = list()
+        if mutate_category == "add":
+            for cond in condition_indices:
+                if policy[cond] != -1:
+                    continue
+                candid_cond.append(cond)  # select candidate conditions
+            add_cond_idx = select_idx(candid_cond)
+            policy[add_cond_idx] = select_value_by_idx(add_cond_idx)
+        elif mutate_category == "delete":
+            for cond in condition_indices:
+                # find conditions which have its value
+                if policy[cond] != -1:
+                    candid_cond.append(cond)
+                del_cond_idx = select_idx(candid_cond)
+                policy[del_cond_idx] = -1  # delete the value
+        elif mutate_category == "modify":
+            for cond in condition_indices:
+                # find conditions which have its value
+                if policy[cond] != -1:
+                    candid_cond.append(cond)
+            modi_cond_idx = select_idx(candid_cond)
+            new_cond_val = select_value_by_idx(modi_cond_idx)
+            policy[modi_cond_idx] = new_cond_val
+    elif change_category == "actionName":
         action_list = role_action_map[role]
         candid_actions = list()
         # make candid list except current action
         for action in action_list:
-            if policy[action] == -1:
+            if policy[action] == -1:           # gather candidate actionNames
                 candid_actions.append(action)
-            else:
+            else:                              # reset original actionName
                 policy[action] = -1
         # select a new action
-        new_action_idx = sel_rand_idx(candid_actions)
+        new_action_idx = select_idx(candid_actions)
         new_action = candid_actions[new_action_idx]
         if policy[0] == 1:       # if policy type is action,
             # select a new method
-            act_method = sel_rand_val(new_action)
+            act_method = select_value_by_idx(new_action)
             policy[new_action] = act_method
         elif policy[0] == 2:     # else if policy type is compliance,
             # mark on the action
             policy[new_action] = 0
-    elif change_content == "actionMethod":
+    elif change_category == "actionMethod":
         if policy[0] == 1:  # double check if the policy is for action.
             action_list = role_action_map[role]
             for action in action_list:
                 if policy[action] != -1:
-                    act_method = sel_rand_val(action)
+                    act_method = select_value_by_idx(action)
                     policy[action] = act_method
                     break
-    elif change_content == "actionValue":
-        candid_action = list()
-        for action in (11, 14):
-            if policy[action] != -1:
-                candid_action.append(action)
-        target_idx = sel_rand_idx(candid_action)
-        policy[15] = sel_rand_val(target_idx)
-    elif change_content == "compliance":
-        new_compliance = float(random.randint(0, 9)/10)
+    elif change_category == "methodValue":
+        if policy[11] != -1 or policy[14] != -1:
+            policy[15] = random.randint(1, 5)
+    elif change_category == "compliance":
+        new_compliance = select_value_by_idx(16)
         while policy[16] == new_compliance:
-            new_compliance = float(random.randint(0, 9) / 10)
+            new_compliance = select_value_by_idx(16)
         policy[16] = new_compliance
-    elif change_content == "enforce":
+    elif change_category == "enforce":
         if policy[17] == 1:
             policy[17] = 0
         else:
             policy[17] = 1
-
     return policy
 
 
@@ -426,14 +336,32 @@ def check_full_description(policy, policy_elem):
     return True
 
 
-def sel_rand_idx(candid_list):
+def check_one_description(policy, policy_elem):
+    condition = list()
+    for idx in policy_elem:
+        if policy[idx] != -1:
+            condition.append(idx)
+
+    if len(condition) != 1:
+        return False
+    return True
+
+
+def select_idx(candid_list):
     return random.randint(0, len(candid_list) - 1)
 
 
-def sel_rand_val(idx):
+def select_value_by_idx(idx):
     val_list = value_map[idx]
     val_idx = random.randint(0, len(val_list) - 1)
     return val_list[val_idx]
+
+
+def get_policy_val_list(idx_list, policy):
+    result = list()
+    for i in idx_list:
+        result.append(policy[i])
+    return result
 
 
 def check_policy_set():

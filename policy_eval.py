@@ -2,6 +2,7 @@ import os
 import subprocess
 from json_handle import make_policy_json
 
+number = 0
 def evaluate(indiv_poli_set):
     # java simulator combine
     # one file --> execution --> result value
@@ -10,13 +11,17 @@ def evaluate(indiv_poli_set):
 
     command = "java -jar SIMVASoS-MCI.jar ./json/"
     file_name = "cand_poli_set.json"
-    # file_name = "archivedPolicy.json"
+    # file_name = "archivedPolicy.json
     total_command = command+file_name
 
     make_policy_json(file_name, indiv_poli_set)
 
+    try:
     # run SIMVA-SoS MCI (Java Program)
-    subprocess.run(total_command.split(), stdout=subprocess.PIPE)
+        subprocess.run(total_command.split(), stdout=subprocess.PIPE)
+    except subprocess.CalledProcessError as e:
+        os.system("cd json && rename \"cand_poli_set.json\" \"./json/error.json\"")
+        print(e.output)
     eval_result = 0.0
 
     with open("Sim_Result.txt") as f:

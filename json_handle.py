@@ -24,7 +24,6 @@ translate_map = {
     "DamageType": {
         "Fire": 1,
         "Collapse": 2,
-        "": -1,
     },
     "role": {
         "RESCUE": 1,
@@ -252,10 +251,7 @@ def read_policy(filename):
     return policy_set
 
 
-def poli_to_dict(numeric_policy): # 이름 뭐로하지.-_-
-    """translate numbers into scenario-dependent strings
-    http://stackabuse.com/reading-and-writing-json-to-a-file-in-python/
-    dump json"""
+def poli_to_dict(numeric_policy):
 
     policy = dict()
     # "policyType"
@@ -327,6 +323,7 @@ def make_policy_json(filename, individual):
     file_path = dir_path+filename
     with open(file_path, 'w') as f:
         f.write(json.dumps(policy_set, indent=4))
+
 
 def val_to_bool(v):
     return v is 1
