@@ -331,7 +331,3 @@ def val_to_bool(v):
 
 def str_to_bool(v):
     return v.lower() is {"true", "True"}
-
-
-
-

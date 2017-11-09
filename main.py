@@ -12,7 +12,7 @@ toolbox = base.Toolbox()
 # register a function in the toolbox with alias.
 # first: alias, second: method, rest params: arguments
 # policy set (10 will be the the number of polices in a policy set)
-toolbox.register("individual", my_initRepeat, creator.Individual, gen_individual, max_size=50)
+toolbox.register("individual", my_initRepeat, creator.Individual, gen_individual, max_size=10)
 toolbox.register("prev_individual", get_prev_policy, creator.Individual)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
@@ -22,19 +22,17 @@ toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("evaluate", policy_eval.evaluate)
 
 
+
 def main():
     # Generate a population of 'policy_set'
-    p_population = toolbox.population(n=100)
+    p_population = toolbox.population(n=50)
     prev_policy_file = Path("./json/previousPolicy.json")
     if prev_policy_file.is_file():
         print("Previous policy file exists.")
         p_population.append(toolbox.prev_individual(filename=prev_policy_file))  # previous policy also has to be "individual" type
         print("Finish reading a previous policy file.")
 
-    for ind in p_population:
-        print(ind)
-
-    CXPB, MUTPB, NGEN = 0.5, 0.2, 10
+    CXPB, MUTPB, NGEN = 0.5, 0.2, 20
 
     # Evaluate the entire population
     fitnesses = map(toolbox.evaluate, p_population)
@@ -44,14 +42,16 @@ def main():
     for g in range(NGEN):
         print("<<<<Generation: ", g,">>>>")
         # Select the next generation individuals
+        best = sorted(p_population, key=attrgetter("fitness"), reverse=True)[0:10]
+        print("Current Best: ", best[0].fitness.values)
         print("Selection...")
-        offspring = toolbox.select(p_population, len(p_population))
+        offspring = toolbox.select(p_population, len(p_population)-10)
         # Clone the selected individuals
         offspring = list(map(toolbox.clone, offspring))
         print("Crossover...")
         # Apply crossover and mutation on the offspring
         for child1, child2 in zip(offspring[::2], offspring[1::2]):
-            # [::] nothing for the first argument, nothing for the second, and jump by three
+            # [start:end:step]
             if random.random() < CXPB:
                 toolbox.mate(child1, child2)
                 del child1.fitness.values
@@ -67,11 +67,21 @@ def main():
         fitnesses = map(toolbox.evaluate, invalid_ind)
         for ind, fit in zip(invalid_ind, fitnesses):
             ind.fitness.values = fit
-
         # The population is entirely replaced by the offspring
-        p_population[:] = offspring
+        p_population[:] = offspring+best
+
 
     return p_population
+
+
+def print_fitness(individuals):
+    for ind in individuals:
+        print(ind.fitness.values,)
+
+
+def print_individual(individuals):
+    for ind in individuals:
+        print("*", ind)
 
 result_pop = main()
 for ind in result_pop:
@@ -79,6 +89,7 @@ for ind in result_pop:
 
 s_inds = sorted(result_pop, key=attrgetter("fitness"), reverse=True)
 
-for ind in s_inds:
-    print("*", ind)
-    print(ind.fitness.values)
+json_handle.make_policy_json("output_policy.json", s_inds[0])
+
+print("RESULT")
+print_fitness(s_inds)

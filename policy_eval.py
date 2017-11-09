@@ -10,7 +10,7 @@ def evaluate(indiv_poli_set):
     # compare current best solution
 
     command = "java -jar SIMVASoS-MCI.jar ./json/"
-    file_name = "cand_poli_set.json"
+    file_name = "cand_poli_set1.json"
     # file_name = "archivedPolicy.json
     total_command = command+file_name
 
@@ -32,3 +32,7 @@ def evaluate(indiv_poli_set):
             eval_result = float(line)
     print(eval_result)
     return eval_result,
+
+
+
+
