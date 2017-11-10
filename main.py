@@ -1,5 +1,5 @@
 import random, json_handle, policy_eval
-from policy_op import gen_individual, my_initRepeat, mut_policy, get_prev_policy
+from policy_op import gen_individual_all, my_initRepeat, mut_policy, get_prev_policy
 from deap import tools, base, creator
 from pathlib import Path
 from operator import attrgetter
@@ -12,12 +12,13 @@ toolbox = base.Toolbox()
 # register a function in the toolbox with alias.
 # first: alias, second: method, rest params: arguments
 # policy set (10 will be the the number of polices in a policy set)
-toolbox.register("individual", my_initRepeat, creator.Individual, gen_individual, max_size=10)
+# toolbox.register("individual", my_initRepeat, creator.Individual, gen_individual, max_size=10)
+toolbox.register("individual", my_initRepeat, creator.Individual, gen_individual_all)
 toolbox.register("prev_individual", get_prev_policy, creator.Individual)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
 toolbox.register("mate", tools.cxTwoPoint)
-toolbox.register("mutate", mut_policy, indpb=0.1)
+toolbox.register("mutate", mut_policy, m_portion=0.1)
 toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("evaluate", policy_eval.evaluate)
 
@@ -26,11 +27,11 @@ toolbox.register("evaluate", policy_eval.evaluate)
 def main():
     # Generate a population of 'policy_set'
     p_population = toolbox.population(n=50)
-    prev_policy_file = Path("./json/previousPolicy.json")
-    if prev_policy_file.is_file():
-        print("Previous policy file exists.")
-        p_population.append(toolbox.prev_individual(filename=prev_policy_file))  # previous policy also has to be "individual" type
-        print("Finish reading a previous policy file.")
+    # prev_policy_file = Path("./json/previousPolicy.json")
+    # if prev_policy_file.is_file():
+    #     print("Previous policy file exists.")
+    #     p_population.append(toolbox.prev_individual(filename=prev_policy_file))
+    #     print("Finish reading a previous policy file.")
 
     CXPB, MUTPB, NGEN = 0.5, 0.2, 20
 
