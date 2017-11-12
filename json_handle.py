@@ -227,11 +227,11 @@ def read_policy(filename):
                         else:
                             prev_policy[15] = int(action['methodValue'])
 
-                        # minComplinace and enforce
+                        # minCompliance and enforce
                         if prev_policy[0] == 1:     # action policy
                             prev_policy[16] = -1    # do not use min_compliance
                             # if str_to_bool(policy['enforce']):
-                            if policy['enforce']:
+                            if policy['enforce'] == "true":
                                 prev_policy[17] = 1
                             else:
                                 prev_policy[17] = 0
@@ -293,6 +293,7 @@ def poli_to_dict(numeric_policy):
         idx_mean = index_map[idx]
         value = numeric_policy[idx]
         if value == -1:
+            action['methodValue'] = ""
             continue
         else:
             if idx == 15:
@@ -319,15 +320,14 @@ def make_policy_json(filename, individual):
         policy_dict = poli_to_dict(policy)
         policy_set.append(policy_dict)
 
-    dir_path = "./json/"
+    dir_path = "./json/candidates/"
     file_path = dir_path+filename
     with open(file_path, 'w') as f:
         f.write(json.dumps(policy_set, indent=4))
 
 
 def val_to_bool(v):
-    return v is 1
+    if v is 1:
+        return "true"
+    return "false"
 
-
-def str_to_bool(v):
-    return v.lower() is {"true", "True"}

@@ -1,8 +1,8 @@
 import random, json_handle, policy_eval
 from policy_op import gen_individual_all, my_initRepeat, mut_policy, get_prev_policy
 from deap import tools, base, creator
-from pathlib import Path
 from operator import attrgetter
+import itertools
 # create class - first: name, second: base, rest params: variable and values
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)      # policy set class
@@ -11,7 +11,7 @@ toolbox = base.Toolbox()
 
 # register a function in the toolbox with alias.
 # first: alias, second: method, rest params: arguments
-# policy set (10 will be the the number of polices in a policy set)
+
 # toolbox.register("individual", my_initRepeat, creator.Individual, gen_individual, max_size=10)
 toolbox.register("individual", my_initRepeat, creator.Individual, gen_individual_all)
 toolbox.register("prev_individual", get_prev_policy, creator.Individual)
@@ -26,19 +26,21 @@ toolbox.register("evaluate", policy_eval.evaluate)
 
 def main():
     # Generate a population of 'policy_set'
-    p_population = toolbox.population(n=50)
+    p_population = toolbox.population(n=30)
     # prev_policy_file = Path("./json/previousPolicy.json")
     # if prev_policy_file.is_file():
     #     print("Previous policy file exists.")
     #     p_population.append(toolbox.prev_individual(filename=prev_policy_file))
     #     print("Finish reading a previous policy file.")
 
-    CXPB, MUTPB, NGEN = 0.5, 0.2, 20
+    CXPB, MUTPB, NGEN = 0.5, 0.2, 3
 
     # Evaluate the entire population
-    fitnesses = map(toolbox.evaluate, p_population)
+    fitnesses = map(toolbox.evaluate, p_population, range(0, len(p_population)-1), itertools.repeat(0, len(p_population)))
+    print("First Evaluation")
     for ind, fit in zip(p_population, fitnesses):
         ind.fitness.values = fit
+    print("End of the First Evaluation")
 
     for g in range(NGEN):
         print("<<<<Generation: ", g,">>>>")
@@ -65,7 +67,7 @@ def main():
         print("Re-evaluation...")
         # Evaluate the individuals with an invalid fitness
         invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
-        fitnesses = map(toolbox.evaluate, invalid_ind)
+        fitnesses = map(toolbox.evaluate, invalid_ind, range(0, len(p_population)-1), itertools.repeat(g, len(invalid_ind)))
         for ind, fit in zip(invalid_ind, fitnesses):
             ind.fitness.values = fit
         # The population is entirely replaced by the offspring

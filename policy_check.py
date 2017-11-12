@@ -83,11 +83,10 @@ role_cond_map = {
     3: [1, 2, 4],  # Treatment
 }
 # policy type - compliance/enforce check (Index-Index)
-# TODO erase?
-type_compliance_map = {
-    1: [16, 17],
-    2: [16, 17],
-}
+# type_compliance_map = {
+#     1: [16, 17],
+#     2: [16, 17],
+# }
 
 
 class PolicyError(Exception):
