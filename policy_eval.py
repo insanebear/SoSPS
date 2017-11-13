@@ -3,24 +3,24 @@ import logging
 import subprocess
 from json_handle import make_policy_json
 
-number = 0
-
 SIMUL_LOG = 'simulation.log'
 
-# def evaluate(indiv_poli_set):
-def evaluate(indiv_poli_set, file_num, gen_num):
+def evaluate(indiv_poli_set):
+# def evaluate(indiv_poli_set, file_num, gen_num):
     # java simulator combine
     # one file --> execution --> result value
     # result = [file1, file2, ... file_#population]
     # compare current best solution
 
-    logging.basicConfig(filename=SIMUL_LOG, level=logging.DEBUG)
+    logging.basicConfig(filename=SIMUL_LOG, format='%(message)s', level=logging.DEBUG)
+    # logging.basicConfig(filename=SIMUL_LOG, level=logging.DEBUG)
 
     command = "java -jar SIMVASoS-MCI.jar ./json/candidates/"
-    # file_name = "cand_poli_set.json"
-    file_name = str(gen_num)+"_cand_poli_set" + str(file_num) + ".json"
+    file_name = "cand_poli_set.json"
+    n_simulation = 50
+    # file_name = str(gen_num)+"_cand_poli_set" + str(file_num) + ".json"
     # file_name = "archivedPolicy.json
-    total_command = command+file_name
+    total_command = command+file_name+" "+str(n_simulation)
 
     make_policy_json(file_name, indiv_poli_set)
 
@@ -41,7 +41,7 @@ def evaluate(indiv_poli_set, file_num, gen_num):
             if not line:
                 break
             eval_result = float(line)
-    print("Simulation Result: ", eval_result)
+    print("Simulation Result:", eval_result, "%")
     return eval_result,
 
 

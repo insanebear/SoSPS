@@ -151,7 +151,7 @@ def gen_individual_all():
                         policy[pol_idx] = -1
                 # print(policy)
                 policy_set.append(policy)
-    print("Generated Set of Policies", len(policy_set))
+    # print("Generated Set of Policies", len(policy_set))
     return policy_set
 
 
@@ -219,6 +219,6 @@ def check_policy_set(policy):
     pass
 
 
-policies = gen_individual_all()
-make_policy_json("policy9_3.json", policies)
-print(len(policies))
+# policies = gen_individual_all()
+# make_policy_json("policy9_3.json", policies)
+# print(len(policies))
