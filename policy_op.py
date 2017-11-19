@@ -1,6 +1,5 @@
 import random
-from json_handle import read_policy, make_policy_json
-from policy_check import check_policy, if_contains_all
+from json_handle import read_policy
 import itertools
 
 """ Representation of a policy
@@ -91,6 +90,20 @@ action_cond_map = {
     14: [1, 2, 4],  # Release
 
 }
+
+action_cond_map2 = {        # TODO Add compliance policy condition
+    # value: indices
+    6: [1, 3],  # Select
+    7: [1, 3],  # Stage
+    8: [1],  # Load
+    9: [1],  # DeliverTo
+    10: [1],  # ReturnTo
+    11: [1],  # Wait
+    12: [1],  # Treat
+    13: [1],  # Operate
+    14: [1, 4],  # Release
+
+}
 # role_cond_map = {
 #     # value: indices
 #     1: [1, 2, 3],  # Rescue
@@ -119,7 +132,53 @@ def make_combination(action):
     return list(itertools.product(*conditions))
 
 
-def gen_individual_all():
+def gen_individual_ack():
+    policy_set = list()
+    # action policies
+    for role in value_map[5]:  # role = 1, 2, 3
+        policy_type = 1
+        for action in role_action_map[role]:
+            combinations = make_combination(action)
+            for combination in combinations:
+                policy = [None] * 18
+                policy[0] = policy_type
+                policy[5] = role
+                policy[17] = 0
+                policy[action] = select_value_by_idx(action)  # set action method on action name
+                # condition
+                for cond, cond_value in zip(action_cond_map[action], combination):
+                    policy[cond] = cond_value
+                # method value
+                if policy[11] is not None or policy[14] is not None:
+                    policy[15] = select_value_by_idx(15)
+                # make rest of indices to invalid(-1)
+                for pol_idx in range(0, len(policy)):
+                    if policy[pol_idx] is None:
+                        policy[pol_idx] = -1
+                # print(policy)
+                policy_set.append(policy)
+
+    # compliance policies
+    for role in value_map[5]:
+        policy_type = 2
+        for action in role_action_map[role]:
+            policy = [None] * 18
+            policy[0] = policy_type
+            policy[5] = role
+            policy[16] = select_value_by_idx(16)  # compliance value
+            policy[action] = 0  # mark on action
+            for cond_value in value_map[1]:  # MCI level condition
+                policy[1] = cond_value
+
+                # make the rest of indices to invalid (-1)
+                for pol_idx in range(0, len(policy)):
+                    if policy[pol_idx] is None:
+                        policy[pol_idx] = -1
+                policy_set.append(policy)
+    return policy_set
+
+
+def gen_individual_multi():   #
     policy_set = list()
     # action policies
     for role in value_map[5]:   # role = 1, 2, 3
@@ -130,16 +189,76 @@ def gen_individual_all():
                 policy = [None] * 18
                 policy[0] = policy_type
                 policy[5] = role
-                policy[16] = -1
-                policy[17] = 1       # TODO Change "Enforce factor should be handled."
+                policy[17] = select_value_by_idx(17)    # enforce or not
+                policy[action] = select_value_by_idx(action)    # set action method on action name
+                # condition
+                for cond, cond_value in zip(action_cond_map[action], combination):
+                    policy[cond] = cond_value
+                # method value
+                if policy[11] is not None or policy[14] is not None:
+                    policy[15] = select_value_by_idx(15)
+                # make rest of indices to invalid(-1)
+                for pol_idx in range(0, len(policy)):
+                    if policy[pol_idx] is None:
+                        policy[pol_idx] = -1
+                # print(policy)
+                policy_set.append(policy)
+    # compliance policies
+    for role in value_map[5]:
+        policy_type = 2
+        for action in role_action_map[role]:
+            policy = [None] * 18
+            policy[0] = policy_type
+            policy[5] = role
+            policy[16] = select_value_by_idx(16)        # compliance value
+            policy[action] = 0      # mark on action
+            for cond_value in value_map[1]:            # MCI level condition
+                policy[1] = cond_value
+
+            # make the rest of indices to invalid (-1)
+                for pol_idx in range(0, len(policy)):
+                    if policy[pol_idx] is None:
+                        policy[pol_idx] = -1
+                policy_set.append(policy)
+
+    # for role in value_map[5]:
+    #     policy_type = 2
+    #     for action in role_action_map[role]:
+    #         combinations = make_combination(action)
+    #         for combination in combinations:
+    #             policy = [None] * 18
+    #             policy[0] = policy_type
+    #             policy[5] = role
+    #             policy[16] = select_value_by_idx(16)
+    #
+    #             # mark on action name
+    #             policy[action] = 0
+    #             for cond, cond_value in zip(action_cond_map[action], combination):
+    #                 policy[cond] = cond_value
+    #             # make rest of indices to invalid(-1)
+    #             for pol_idx in range(0, len(policy)):
+    #                 if policy[pol_idx] is None:
+    #                     policy[pol_idx] = -1
+    #                 # print(policy)
+    #             policy_set.append(policy)
+    # print("Generated Set of Policies", len(policy_set))
+    return policy_set
+
+
+def gen_individual_directed():
+    policy_set = list()
+    # action policies
+    for role in value_map[5]:  # role = 1, 2, 3
+        policy_type = 1
+        for action in role_action_map[role]:
+            combinations = make_combination(action)
+            for combination in combinations:
+                policy = [None] * 18
+                policy[0] = policy_type
+                policy[5] = role
+                policy[17] = 1
                 # set action method on action name
                 policy[action] = select_value_by_idx(action)
-                # # For Test
-                # if action == 9:
-                #     policy[action] = 3
-                # else:
-                #     policy[action] = 1
-                # set condition
                 for cond, cond_value in zip(action_cond_map[action], combination):
                     policy[cond] = cond_value
                 # method value
@@ -155,7 +274,7 @@ def gen_individual_all():
     return policy_set
 
 
-def mut_policy(policy_set, m_portion):
+def mut_policy_ack(policy_set, m_portion):
     # in some probability, a policy is mutated by deletion, addition, or modification
 
     idx_list = list()
@@ -172,28 +291,100 @@ def mut_policy(policy_set, m_portion):
         policy = policy_set[mut_idx]
         if policy[0] == 1:      # action policy
             role = policy[5]
-            if policy[11] != -1 or policy[14] != -1:
-                if bool(random.getrandbits(1)):
+            choice = random.randint(0, 1)
+            if choice == 0:
+                if policy[11] != -1 or policy[14] != -1:
                     policy[15] = select_value_by_idx(15)
                     continue
-
-            action_list = role_action_map[role]
-            for action in action_list:
-                if policy[action] != -1:
-                    act_method = select_value_by_idx(action)
-                    policy[action] = act_method
-                    break
-
-            # if policy[17] == 1:     # Enforce
-            #     policy[17] = 0
-            # else:
-            #     policy[17] = 1
+            elif choice == 1:
+                action_list = role_action_map[role]
+                for action in action_list:
+                    if policy[action] != -1:
+                        act_method = select_value_by_idx(action)
+                        policy[action] = act_method
+                        break
         elif policy[0] == 2:    # compliance policy
             new_compliance = select_value_by_idx(16)
             while policy[16] == new_compliance:
                 new_compliance = select_value_by_idx(16)
             policy[16] = new_compliance
 
+    return policy_set,
+
+
+def mut_policy_multi(policy_set, m_portion):
+    # in some probability, a policy is mutated by deletion, addition, or modification
+
+    idx_list = list()
+    for i in range(0, len(policy_set)-1):
+        idx_list.append(i)
+
+    to_be_mutated_idx = list()
+    for i in range(0, int(len(policy_set)*m_portion)):
+        num = random.randint(0, len(idx_list)-1)
+        to_be_mutated_idx.append(idx_list[num])
+        del idx_list[num]
+
+    for mut_idx in to_be_mutated_idx:
+        policy = policy_set[mut_idx]
+        if policy[0] == 1:      # action policy
+            role = policy[5]
+            choice = random.randint(0, 2)
+            if choice == 0:
+                if policy[11] != -1 or policy[14] != -1:
+                    policy[15] = select_value_by_idx(15)
+                    continue
+            elif choice == 1:
+                if policy[17] == 1:     # Enforce
+                    policy[17] = 0
+                else:
+                    policy[17] = 1
+            elif choice == 2:
+                action_list = role_action_map[role]
+                for action in action_list:
+                    if policy[action] != -1:
+                        act_method = select_value_by_idx(action)
+                        policy[action] = act_method
+                        break
+
+        elif policy[0] == 2:    # compliance policy
+            new_compliance = select_value_by_idx(16)
+            while policy[16] == new_compliance:
+                new_compliance = select_value_by_idx(16)
+            policy[16] = new_compliance
+
+    return policy_set,
+
+
+def mut_policy_directed(policy_set, m_portion):
+    # in some probability, a policy is mutated by deletion, addition, or modification
+
+    idx_list = list()
+    for i in range(0, len(policy_set) - 1):
+        idx_list.append(i)
+
+    to_be_mutated_idx = list()
+    for i in range(0, int(len(policy_set) * m_portion)):
+        num = random.randint(0, len(idx_list) - 1)
+        to_be_mutated_idx.append(idx_list[num])
+        del idx_list[num]
+
+    for mut_idx in to_be_mutated_idx:
+        policy = policy_set[mut_idx]
+        if policy[0] == 1:      # action policy
+            role = policy[5]
+            choice = random.randint(0, 1)
+            if choice == 0:
+                if policy[11] != -1 or policy[14] != -1:
+                    policy[15] = select_value_by_idx(15)
+                    continue
+            elif choice == 1:
+                action_list = role_action_map[role]
+                for action in action_list:
+                    if policy[action] != -1:
+                        act_method = select_value_by_idx(action)
+                        policy[action] = act_method
+                        break
     return policy_set,
 
 
@@ -218,7 +409,50 @@ def check_policy_set(policy):
     # each condition has one direction of action...
     pass
 
-
+#
 # policies = gen_individual_all()
-# make_policy_json("policy9_3.json", policies)
+# make_policy_json("all_policies.json", policies)
 # print(len(policies))
+
+
+# def mut_policy(policy_set, m_portion):
+#     # in some probability, a policy is mutated by deletion, addition, or modification
+#
+#     idx_list = list()
+#     for i in range(0, len(policy_set)-1):
+#         idx_list.append(i)
+#
+#     to_be_mutated_idx = list()
+#     for i in range(0, int(len(policy_set)*m_portion)):
+#         num = random.randint(0, len(idx_list)-1)
+#         to_be_mutated_idx.append(idx_list[num])
+#         del idx_list[num]
+#
+#     for mut_idx in to_be_mutated_idx:
+#         policy = policy_set[mut_idx]
+#         if policy[0] == 1:      # action policy
+#             role = policy[5]
+#             if policy[11] != -1 or policy[14] != -1:
+#                 if bool(random.getrandbits(1)):
+#                     policy[15] = select_value_by_idx(15)
+#                     continue
+#
+#             action_list = role_action_map[role]
+#             for action in action_list:
+#                 if policy[action] != -1:
+#                     act_method = select_value_by_idx(action)
+#                     policy[action] = act_method
+#                     break
+#
+#             # if policy[17] == 1:     # Enforce
+#             #     policy[17] = 0
+#             # else:
+#             #     policy[17] = 1
+#         elif policy[0] == 2:    # compliance policy
+#             new_compliance = select_value_by_idx(16)
+#             while policy[16] == new_compliance:
+#                 new_compliance = select_value_by_idx(16)
+#             policy[16] = new_compliance
+#
+#     return policy_set,
+

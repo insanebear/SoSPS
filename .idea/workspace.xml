@@ -16,8 +16,8 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/SoSPS$test_main.coverage" NAME="test_main Coverage Results" MODIFIED="1509892686031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SoSPS$policy_op.coverage" NAME="policy_op Coverage Results" MODIFIED="1510478751831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SoSPS$main.coverage" NAME="main Coverage Results" MODIFIED="1510589867444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SoSPS$policy_op.coverage" NAME="policy_op Coverage Results" MODIFIED="1510592560077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SoSPS$main.coverage" NAME="main Coverage Results" MODIFIED="1510875172633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SoSPS$json_handle.coverage" NAME="json_handle Coverage Results" MODIFIED="1510129040437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SoSPS$policy_eval.coverage" NAME="policy_eval Coverage Results" MODIFIED="1510058224457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -26,14 +26,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.60930735">
+    <splitter split-orientation="horizontal" split-proportion="0.106086954">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="228">
-                  <caret line="39" column="35" lean-forward="false" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
+                <state relative-caret-position="551">
+                  <caret line="143" column="32" lean-forward="false" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
                   <folding>
                     <element signature="e#0#39#0" expanded="true" />
                   </folding>
@@ -41,75 +41,12 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SoSproperties.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/json/SoSproperties.json">
+          <file leaf-file-name="selection.py" pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/deap/tools/selection.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="190">
-                  <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+                <state relative-caret-position="-1439">
+                  <caret line="47" column="4" lean-forward="false" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="json_handle.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/json_handle.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1330">
-                  <caret line="324" column="35" lean-forward="false" selection-start-line="324" selection-start-column="35" selection-end-line="324" selection-end-column="35" />
-                  <folding>
-                    <element signature="e#13#1007#1" expanded="false" />
-                    <element signature="e#1025#2081#0" expanded="false" />
-                    <element signature="e#1045#1098#0" expanded="false" />
-                    <element signature="e#1118#1167#0" expanded="false" />
-                    <element signature="e#1181#1257#0" expanded="false" />
-                    <element signature="e#1273#1366#0" expanded="false" />
-                    <element signature="e#1381#1449#0" expanded="false" />
-                    <element signature="e#1463#1556#0" expanded="false" />
-                    <element signature="e#1575#1661#0" expanded="false" />
-                    <element signature="e#1679#1770#0" expanded="false" />
-                    <element signature="e#1784#1825#0" expanded="false" />
-                    <element signature="e#1840#1885#0" expanded="false" />
-                    <element signature="e#1902#1997#0" expanded="false" />
-                    <element signature="e#2014#2078#0" expanded="false" />
-                    <element signature="e#2103#3175#0" expanded="false" />
-                    <element signature="e#2123#2176#0" expanded="false" />
-                    <element signature="e#2196#2261#0" expanded="false" />
-                    <element signature="e#2275#2351#0" expanded="false" />
-                    <element signature="e#2367#2460#0" expanded="false" />
-                    <element signature="e#2475#2543#0" expanded="false" />
-                    <element signature="e#2557#2650#0" expanded="false" />
-                    <element signature="e#2669#2755#0" expanded="false" />
-                    <element signature="e#2773#2864#0" expanded="false" />
-                    <element signature="e#2878#2919#0" expanded="false" />
-                    <element signature="e#2934#2979#0" expanded="false" />
-                    <element signature="e#2996#3091#0" expanded="false" />
-                    <element signature="e#3108#3172#0" expanded="false" />
-                    <element signature="e#3189#3523#0" expanded="false" />
-                    <element signature="e#3557#7724#0" expanded="false" />
-                    <element signature="e#8023#8522#0" expanded="false" />
-                    <element signature="e#8157#8522#0" expanded="false" />
-                    <element signature="e#8392#8481#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="policy_op.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/policy_op.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="228">
-                  <caret line="125" column="23" lean-forward="true" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#0#13#0" expanded="true" />
-                    <element signature="e#1196#1529#0" expanded="false" />
-                    <element signature="e#1559#1726#0" expanded="false" />
-                    <element signature="e#1749#2475#0" expanded="false" />
-                    <element signature="e#2509#2707#0" expanded="false" />
-                    <element signature="e#2726#2991#0" expanded="false" />
-                    <element signature="e#6542#6588#0" expanded="false" />
-                    <element signature="e#6625#6730#0" expanded="false" />
-                    <element signature="e#6780#6869#0" expanded="false" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -118,6 +55,16 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="json_handle.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/json_handle.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="3344">
+                  <caret line="176" column="19" lean-forward="false" selection-start-line="176" selection-start-column="19" selection-end-line="176" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="policy_check.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/policy_check.py">
               <provider selected="true" editor-type-id="text-editor">
@@ -135,13 +82,66 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="policy_eval.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="policy_eval.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/policy_eval.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="247">
-                  <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+                <state relative-caret-position="285">
+                  <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SoSproperties.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/json/SoSproperties.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="19">
+                  <caret line="1" column="14" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="policy_op.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/policy_op.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="59" column="15" lean-forward="false" selection-start-line="59" selection-start-column="15" selection-end-line="59" selection-end-column="15" />
+                  <folding>
+                    <element signature="e#68#1102#1" expanded="false" />
+                    <element signature="e#1123#1456#0" expanded="false" />
+                    <element signature="e#1486#1653#0" expanded="false" />
+                    <element signature="e#2436#2634#0" expanded="false" />
+                    <element signature="e#3224#3243#0" expanded="false" />
+                    <element signature="e#3444#3481#0" expanded="false" />
+                    <element signature="e#3524#3548#0" expanded="false" />
+                    <element signature="e#3597#3636#0" expanded="false" />
+                    <element signature="e#3673#3824#0" expanded="false" />
+                    <element signature="e#5697#8501#0" expanded="false" />
+                    <element signature="e#5796#6829#0" expanded="false" />
+                    <element signature="e#5869#6829#0" expanded="false" />
+                    <element signature="e#5970#6824#0" expanded="false" />
+                    <element signature="e#6678#6767#0" expanded="false" />
+                    <element signature="e#6889#7542#0" expanded="false" />
+                    <element signature="e#6962#7542#0" expanded="false" />
+                    <element signature="e#7269#7536#0" expanded="false" />
+                    <element signature="e#7422#7494#0" expanded="false" />
+                    <element signature="e#7542#7569#0" expanded="false" />
+                    <element signature="e#8539#9688#0" expanded="false" />
+                    <element signature="e#8637#9613#0" expanded="false" />
+                    <element signature="e#8710#9613#0" expanded="false" />
+                    <element signature="e#8811#9608#0" expanded="false" />
+                    <element signature="e#9462#9551#0" expanded="false" />
+                    <element signature="e#9738#11078#0" expanded="false" />
+                    <element signature="e#11130#12643#0" expanded="false" />
+                    <element signature="e#12698#13793#0" expanded="false" />
+                    <element signature="e#13829#13875#0" expanded="false" />
+                    <element signature="e#13912#14017#0" expanded="false" />
+                    <element signature="e#14067#14156#0" expanded="false" />
+                    <element signature="e#14193#14249#0" expanded="false" />
+                    <element signature="e#14251#14252#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -178,11 +178,11 @@
         <option value="$PROJECT_DIR$/test_main.py" />
         <option value="$PROJECT_DIR$/policy_check.py" />
         <option value="$PROJECT_DIR$/json_handle.py" />
-        <option value="$PROJECT_DIR$/policy_op.py" />
         <option value="$PROJECT_DIR$/json/envProperties.json" />
         <option value="$PROJECT_DIR$/policy_eval.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/json/SoSproperties.json" />
+        <option value="$PROJECT_DIR$/policy_op.py" />
       </list>
     </option>
   </component>
@@ -213,8 +213,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -243,13 +241,15 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="SearchEverywhereHistoryKey" value="sos&#9;FILE&#9;file://C:/Repositories/SoSPS/json/SoSproperties.json" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Repositories/SoSPS/policy_check.py&#10;sos&#9;FILE&#9;file://C:/Repositories/SoSPS/json/SoSproperties.json" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -620,18 +620,25 @@
       <option name="project" value="LOCAL" />
       <updated>1510497182198</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Changed simulation logging features&#10;Removed leaving all generated policies as individual files feature temporally">
+      <created>1510590195810</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1510590195810</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1015625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14741784" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-2058" y="528" width="1920" height="323" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3061033" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-1920" y="-108" width="1920" height="1040" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -644,7 +651,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -680,11 +687,12 @@
     <MESSAGE value="Change selection with extracting best top 10 from population" />
     <MESSAGE value="Change policy generation with full condition descriptions." />
     <MESSAGE value="Add simulation logging features&#10;Add leaving all generated policies as individual files feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add simulation logging features&#10;Add leaving all generated policies as individual files feature" />
+    <MESSAGE value="Changed simulation logging features&#10;Removed leaving all generated policies as individual files feature temporally" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed simulation logging features&#10;Removed leaving all generated policies as individual files feature temporally" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -693,6 +701,57 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="44" column="48" lean-forward="false" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/json_handle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3344">
+          <caret line="176" column="19" lean-forward="false" selection-start-line="176" selection-start-column="19" selection-end-line="176" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/policy_check.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="45" column="51" lean-forward="false" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#1084#1417#0" expanded="false" />
+            <element signature="e#1637#2362#0" expanded="false" />
+            <element signature="e#2396#2594#0" expanded="false" />
+            <element signature="e#2611#2725#0" expanded="false" />
+            <element signature="e#6461#6678#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/policy_eval.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/json/SoSproperties.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1254">
@@ -715,40 +774,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="294" column="23" lean-forward="true" selection-start-line="294" selection-start-column="23" selection-end-line="294" selection-end-column="23" />
-          <folding>
-            <element signature="e#13#1007#1" expanded="false" />
-            <element signature="e#1025#2081#0" expanded="false" />
-            <element signature="e#1045#1098#0" expanded="false" />
-            <element signature="e#1118#1167#0" expanded="false" />
-            <element signature="e#1181#1257#0" expanded="false" />
-            <element signature="e#1273#1366#0" expanded="false" />
-            <element signature="e#1381#1449#0" expanded="false" />
-            <element signature="e#1463#1556#0" expanded="false" />
-            <element signature="e#1575#1661#0" expanded="false" />
-            <element signature="e#1679#1770#0" expanded="false" />
-            <element signature="e#1784#1825#0" expanded="false" />
-            <element signature="e#1840#1885#0" expanded="false" />
-            <element signature="e#1902#1997#0" expanded="false" />
-            <element signature="e#2014#2078#0" expanded="false" />
-            <element signature="e#2103#3175#0" expanded="false" />
-            <element signature="e#2123#2176#0" expanded="false" />
-            <element signature="e#2196#2261#0" expanded="false" />
-            <element signature="e#2275#2351#0" expanded="false" />
-            <element signature="e#2367#2460#0" expanded="false" />
-            <element signature="e#2475#2543#0" expanded="false" />
-            <element signature="e#2557#2650#0" expanded="false" />
-            <element signature="e#2669#2755#0" expanded="false" />
-            <element signature="e#2773#2864#0" expanded="false" />
-            <element signature="e#2878#2919#0" expanded="false" />
-            <element signature="e#2934#2979#0" expanded="false" />
-            <element signature="e#2996#3091#0" expanded="false" />
-            <element signature="e#3108#3172#0" expanded="false" />
-            <element signature="e#3189#3523#0" expanded="false" />
-            <element signature="e#3557#7724#0" expanded="false" />
-            <element signature="e#8023#8522#0" expanded="false" />
-            <element signature="e#8157#8522#0" expanded="false" />
-            <element signature="e#8392#8481#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -757,15 +783,38 @@
         <state relative-caret-position="2850">
           <caret line="153" column="53" lean-forward="false" selection-start-line="153" selection-start-column="53" selection-end-line="153" selection-end-column="53" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#1196#1529#0" expanded="false" />
-            <element signature="e#1559#1726#0" expanded="false" />
-            <element signature="e#1749#2475#0" expanded="false" />
-            <element signature="e#2509#2707#0" expanded="false" />
-            <element signature="e#2726#2991#0" expanded="false" />
-            <element signature="e#6542#6588#0" expanded="false" />
-            <element signature="e#6625#6730#0" expanded="false" />
-            <element signature="e#6780#6869#0" expanded="false" />
+            <element signature="e#68#1102#1" expanded="false" />
+            <element signature="e#1123#1456#0" expanded="false" />
+            <element signature="e#1486#1653#0" expanded="false" />
+            <element signature="e#2436#2634#0" expanded="false" />
+            <element signature="e#3224#3243#0" expanded="false" />
+            <element signature="e#3444#3481#0" expanded="false" />
+            <element signature="e#3524#3548#0" expanded="false" />
+            <element signature="e#3597#3636#0" expanded="false" />
+            <element signature="e#3673#3824#0" expanded="false" />
+            <element signature="e#5697#8501#0" expanded="false" />
+            <element signature="e#5796#6829#0" expanded="false" />
+            <element signature="e#5869#6829#0" expanded="false" />
+            <element signature="e#5970#6824#0" expanded="false" />
+            <element signature="e#6678#6767#0" expanded="false" />
+            <element signature="e#6889#7542#0" expanded="false" />
+            <element signature="e#6962#7542#0" expanded="false" />
+            <element signature="e#7269#7536#0" expanded="false" />
+            <element signature="e#7422#7494#0" expanded="false" />
+            <element signature="e#7542#7569#0" expanded="false" />
+            <element signature="e#8539#9688#0" expanded="false" />
+            <element signature="e#8637#9613#0" expanded="false" />
+            <element signature="e#8710#9613#0" expanded="false" />
+            <element signature="e#8811#9608#0" expanded="false" />
+            <element signature="e#9462#9551#0" expanded="false" />
+            <element signature="e#9738#11078#0" expanded="false" />
+            <element signature="e#11130#12643#0" expanded="false" />
+            <element signature="e#12698#13793#0" expanded="false" />
+            <element signature="e#13829#13875#0" expanded="false" />
+            <element signature="e#13912#14017#0" expanded="false" />
+            <element signature="e#14067#14156#0" expanded="false" />
+            <element signature="e#14193#14249#0" expanded="false" />
+            <element signature="e#14251#14252#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -817,7 +866,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -826,15 +874,38 @@
         <state relative-caret-position="4332">
           <caret line="368" column="0" lean-forward="true" selection-start-line="368" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#1196#1529#0" expanded="false" />
-            <element signature="e#1559#1726#0" expanded="false" />
-            <element signature="e#1749#2475#0" expanded="false" />
-            <element signature="e#2509#2707#0" expanded="false" />
-            <element signature="e#2726#2991#0" expanded="false" />
-            <element signature="e#6542#6588#0" expanded="false" />
-            <element signature="e#6625#6730#0" expanded="false" />
-            <element signature="e#6780#6869#0" expanded="false" />
+            <element signature="e#68#1102#1" expanded="false" />
+            <element signature="e#1123#1456#0" expanded="false" />
+            <element signature="e#1486#1653#0" expanded="false" />
+            <element signature="e#2436#2634#0" expanded="false" />
+            <element signature="e#3224#3243#0" expanded="false" />
+            <element signature="e#3444#3481#0" expanded="false" />
+            <element signature="e#3524#3548#0" expanded="false" />
+            <element signature="e#3597#3636#0" expanded="false" />
+            <element signature="e#3673#3824#0" expanded="false" />
+            <element signature="e#5697#8501#0" expanded="false" />
+            <element signature="e#5796#6829#0" expanded="false" />
+            <element signature="e#5869#6829#0" expanded="false" />
+            <element signature="e#5970#6824#0" expanded="false" />
+            <element signature="e#6678#6767#0" expanded="false" />
+            <element signature="e#6889#7542#0" expanded="false" />
+            <element signature="e#6962#7542#0" expanded="false" />
+            <element signature="e#7269#7536#0" expanded="false" />
+            <element signature="e#7422#7494#0" expanded="false" />
+            <element signature="e#7542#7569#0" expanded="false" />
+            <element signature="e#8539#9688#0" expanded="false" />
+            <element signature="e#8637#9613#0" expanded="false" />
+            <element signature="e#8710#9613#0" expanded="false" />
+            <element signature="e#8811#9608#0" expanded="false" />
+            <element signature="e#9462#9551#0" expanded="false" />
+            <element signature="e#9738#11078#0" expanded="false" />
+            <element signature="e#11130#12643#0" expanded="false" />
+            <element signature="e#12698#13793#0" expanded="false" />
+            <element signature="e#13829#13875#0" expanded="false" />
+            <element signature="e#13912#14017#0" expanded="false" />
+            <element signature="e#14067#14156#0" expanded="false" />
+            <element signature="e#14193#14249#0" expanded="false" />
+            <element signature="e#14251#14252#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -843,50 +914,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="314" column="9" lean-forward="false" selection-start-line="314" selection-start-column="9" selection-end-line="314" selection-end-column="9" />
-          <folding>
-            <element signature="e#13#1007#1" expanded="false" />
-            <element signature="e#1025#2081#0" expanded="false" />
-            <element signature="e#1045#1098#0" expanded="false" />
-            <element signature="e#1118#1167#0" expanded="false" />
-            <element signature="e#1181#1257#0" expanded="false" />
-            <element signature="e#1273#1366#0" expanded="false" />
-            <element signature="e#1381#1449#0" expanded="false" />
-            <element signature="e#1463#1556#0" expanded="false" />
-            <element signature="e#1575#1661#0" expanded="false" />
-            <element signature="e#1679#1770#0" expanded="false" />
-            <element signature="e#1784#1825#0" expanded="false" />
-            <element signature="e#1840#1885#0" expanded="false" />
-            <element signature="e#1902#1997#0" expanded="false" />
-            <element signature="e#2014#2078#0" expanded="false" />
-            <element signature="e#2103#3175#0" expanded="false" />
-            <element signature="e#2123#2176#0" expanded="false" />
-            <element signature="e#2196#2261#0" expanded="false" />
-            <element signature="e#2275#2351#0" expanded="false" />
-            <element signature="e#2367#2460#0" expanded="false" />
-            <element signature="e#2475#2543#0" expanded="false" />
-            <element signature="e#2557#2650#0" expanded="false" />
-            <element signature="e#2669#2755#0" expanded="false" />
-            <element signature="e#2773#2864#0" expanded="false" />
-            <element signature="e#2878#2919#0" expanded="false" />
-            <element signature="e#2934#2979#0" expanded="false" />
-            <element signature="e#2996#3091#0" expanded="false" />
-            <element signature="e#3108#3172#0" expanded="false" />
-            <element signature="e#3189#3523#0" expanded="false" />
-            <element signature="e#3557#7724#0" expanded="false" />
-            <element signature="e#8023#8522#0" expanded="false" />
-            <element signature="e#8157#8522#0" expanded="false" />
-            <element signature="e#8392#8481#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/json/final_policy.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/json/final_policy.json" />
     <entry file="file://$PROJECT_DIR$/policy_check.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1501">
@@ -937,15 +969,38 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#1196#1529#0" expanded="false" />
-            <element signature="e#1559#1726#0" expanded="false" />
-            <element signature="e#1749#2475#0" expanded="false" />
-            <element signature="e#2509#2707#0" expanded="false" />
-            <element signature="e#2726#2991#0" expanded="false" />
-            <element signature="e#6542#6588#0" expanded="false" />
-            <element signature="e#6625#6730#0" expanded="false" />
-            <element signature="e#6780#6869#0" expanded="false" />
+            <element signature="e#68#1102#1" expanded="false" />
+            <element signature="e#1123#1456#0" expanded="false" />
+            <element signature="e#1486#1653#0" expanded="false" />
+            <element signature="e#2436#2634#0" expanded="false" />
+            <element signature="e#3224#3243#0" expanded="false" />
+            <element signature="e#3444#3481#0" expanded="false" />
+            <element signature="e#3524#3548#0" expanded="false" />
+            <element signature="e#3597#3636#0" expanded="false" />
+            <element signature="e#3673#3824#0" expanded="false" />
+            <element signature="e#5697#8501#0" expanded="false" />
+            <element signature="e#5796#6829#0" expanded="false" />
+            <element signature="e#5869#6829#0" expanded="false" />
+            <element signature="e#5970#6824#0" expanded="false" />
+            <element signature="e#6678#6767#0" expanded="false" />
+            <element signature="e#6889#7542#0" expanded="false" />
+            <element signature="e#6962#7542#0" expanded="false" />
+            <element signature="e#7269#7536#0" expanded="false" />
+            <element signature="e#7422#7494#0" expanded="false" />
+            <element signature="e#7542#7569#0" expanded="false" />
+            <element signature="e#8539#9688#0" expanded="false" />
+            <element signature="e#8637#9613#0" expanded="false" />
+            <element signature="e#8710#9613#0" expanded="false" />
+            <element signature="e#8811#9608#0" expanded="false" />
+            <element signature="e#9462#9551#0" expanded="false" />
+            <element signature="e#9738#11078#0" expanded="false" />
+            <element signature="e#11130#12643#0" expanded="false" />
+            <element signature="e#12698#13793#0" expanded="false" />
+            <element signature="e#13829#13875#0" expanded="false" />
+            <element signature="e#13912#14017#0" expanded="false" />
+            <element signature="e#14067#14156#0" expanded="false" />
+            <element signature="e#14193#14249#0" expanded="false" />
+            <element signature="e#14251#14252#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -971,28 +1026,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/json/final_policy.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/json/final_policy.json" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/operator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="235" column="8" lean-forward="false" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/deap/tools/selection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#14#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1004,13 +1043,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/json/output_policy.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/json/output_policy.json" />
     <entry file="file://$PROJECT_DIR$/json/newPolicy.json" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/deap/tools/init.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1028,44 +1061,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/json/envProperties.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/json_handle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1330">
-          <caret line="324" column="35" lean-forward="false" selection-start-line="324" selection-start-column="35" selection-end-line="324" selection-end-column="35" />
-          <folding>
-            <element signature="e#13#1007#1" expanded="false" />
-            <element signature="e#1025#2081#0" expanded="false" />
-            <element signature="e#1045#1098#0" expanded="false" />
-            <element signature="e#1118#1167#0" expanded="false" />
-            <element signature="e#1181#1257#0" expanded="false" />
-            <element signature="e#1273#1366#0" expanded="false" />
-            <element signature="e#1381#1449#0" expanded="false" />
-            <element signature="e#1463#1556#0" expanded="false" />
-            <element signature="e#1575#1661#0" expanded="false" />
-            <element signature="e#1679#1770#0" expanded="false" />
-            <element signature="e#1784#1825#0" expanded="false" />
-            <element signature="e#1840#1885#0" expanded="false" />
-            <element signature="e#1902#1997#0" expanded="false" />
-            <element signature="e#2014#2078#0" expanded="false" />
-            <element signature="e#2103#3175#0" expanded="false" />
-            <element signature="e#2123#2176#0" expanded="false" />
-            <element signature="e#2196#2261#0" expanded="false" />
-            <element signature="e#2275#2351#0" expanded="false" />
-            <element signature="e#2367#2460#0" expanded="false" />
-            <element signature="e#2475#2543#0" expanded="false" />
-            <element signature="e#2557#2650#0" expanded="false" />
-            <element signature="e#2669#2755#0" expanded="false" />
-            <element signature="e#2773#2864#0" expanded="false" />
-            <element signature="e#2878#2919#0" expanded="false" />
-            <element signature="e#2934#2979#0" expanded="false" />
-            <element signature="e#2996#3091#0" expanded="false" />
-            <element signature="e#3108#3172#0" expanded="false" />
-            <element signature="e#3189#3523#0" expanded="false" />
-            <element signature="e#3557#7724#0" expanded="false" />
-            <element signature="e#8023#8522#0" expanded="false" />
-            <element signature="e#8157#8522#0" expanded="false" />
-            <element signature="e#8392#8481#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="3344">
+          <caret line="176" column="19" lean-forward="false" selection-start-line="176" selection-start-column="19" selection-end-line="176" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1084,28 +1091,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/json/envProperties.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/policy_eval.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        <state relative-caret-position="285">
+          <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/deap/tools/selection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1439">
+          <caret line="47" column="4" lean-forward="false" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="39" column="35" lean-forward="false" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
+        <state relative-caret-position="551">
+          <caret line="143" column="32" lean-forward="false" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -1114,26 +1121,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/json/SoSproperties.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        <state relative-caret-position="19">
+          <caret line="1" column="14" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/policy_op.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="125" column="23" lean-forward="true" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="23" />
+        <state relative-caret-position="323">
+          <caret line="59" column="15" lean-forward="false" selection-start-line="59" selection-start-column="15" selection-end-line="59" selection-end-column="15" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#1196#1529#0" expanded="false" />
-            <element signature="e#1559#1726#0" expanded="false" />
-            <element signature="e#1749#2475#0" expanded="false" />
-            <element signature="e#2509#2707#0" expanded="false" />
-            <element signature="e#2726#2991#0" expanded="false" />
-            <element signature="e#6542#6588#0" expanded="false" />
-            <element signature="e#6625#6730#0" expanded="false" />
-            <element signature="e#6780#6869#0" expanded="false" />
+            <element signature="e#68#1102#1" expanded="false" />
+            <element signature="e#1123#1456#0" expanded="false" />
+            <element signature="e#1486#1653#0" expanded="false" />
+            <element signature="e#2436#2634#0" expanded="false" />
+            <element signature="e#3224#3243#0" expanded="false" />
+            <element signature="e#3444#3481#0" expanded="false" />
+            <element signature="e#3524#3548#0" expanded="false" />
+            <element signature="e#3597#3636#0" expanded="false" />
+            <element signature="e#3673#3824#0" expanded="false" />
+            <element signature="e#5697#8501#0" expanded="false" />
+            <element signature="e#5796#6829#0" expanded="false" />
+            <element signature="e#5869#6829#0" expanded="false" />
+            <element signature="e#5970#6824#0" expanded="false" />
+            <element signature="e#6678#6767#0" expanded="false" />
+            <element signature="e#6889#7542#0" expanded="false" />
+            <element signature="e#6962#7542#0" expanded="false" />
+            <element signature="e#7269#7536#0" expanded="false" />
+            <element signature="e#7422#7494#0" expanded="false" />
+            <element signature="e#7542#7569#0" expanded="false" />
+            <element signature="e#8539#9688#0" expanded="false" />
+            <element signature="e#8637#9613#0" expanded="false" />
+            <element signature="e#8710#9613#0" expanded="false" />
+            <element signature="e#8811#9608#0" expanded="false" />
+            <element signature="e#9462#9551#0" expanded="false" />
+            <element signature="e#9738#11078#0" expanded="false" />
+            <element signature="e#11130#12643#0" expanded="false" />
+            <element signature="e#12698#13793#0" expanded="false" />
+            <element signature="e#13829#13875#0" expanded="false" />
+            <element signature="e#13912#14017#0" expanded="false" />
+            <element signature="e#14067#14156#0" expanded="false" />
+            <element signature="e#14193#14249#0" expanded="false" />
+            <element signature="e#14251#14252#0" expanded="false" />
           </folding>
         </state>
       </provider>
