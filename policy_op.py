@@ -57,14 +57,14 @@ value_map = {
     3: [1, 2, 3, 4],  # Story
     4: [1, 2, 3, 4, 5],  # Time
     5: [1, 2, 3], # role
-    6: [1, 2, 3],  # select: [distance, severity, injuryType]
-    7: [1, 2],  # stage: [meanRandom, MCSlot]
-    8: [1, 2, 3],  # load: [distance, severity, injuryType]
-    9: [1, 2, 3],  # deliverTo: [distance, vacancy, rate]
-    10: [1, 2, 3],  # returnTo: [MeanRandom, MCSlot, original]
+    6: [1, 2, 3],  # select: [distance, severity, injuryType, random]
+    7: [1, 2],  # stage: [meanRandom, MCSlot, random]
+    8: [1, 2, 3],  # load: [distance, severity, injuryType, random]
+    9: [1, 2, 3],  # deliverTo: [distance, vacancy, rate, random]
+    10: [1, 2, 3],  # returnTo: [MeanRandom, MCSlot, original, random]
     11: [1],  # wait: [stay]
-    12: [1],  # treat: [severity]
-    13: [1, 2, 3],  # operate: [severity, arriveTime, injuryType]
+    12: [1],  # treat: [severity, random]
+    13: [1, 2, 3],  # operate: [severity, arriveTime, injuryType, random]
     14: [1, 2],  # release: [strength, time]
     15: range(0, 5),
     16: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],

@@ -99,29 +99,34 @@ rev_translate_map = {
         1: "Distance",
         2: "Severity",
         3: "InjuryType",
+        4: "Random",
         0: "",
     },
     "Stage": {
         1: "MeanRandom",
         2: "MCSlot",
+        3: "Random",
         0: "",
     },
     "Load": {
         1: "Distance",
         2: "Severity",
         3: "InjuryType",
+        4: "Random",
         0: "",
     },
     "DeliverTo": {
         1: "Distance",
         2: "Vacancy",
         3: "Rate",
+        4: "Random",
         0: "",
     },
     "ReturnTo": {
         1: "MeanRandom",
         2: "MCSlot",
         3: "Original",
+        4: "Random",
         0: "",
     },
     "Wait": {
@@ -130,12 +135,14 @@ rev_translate_map = {
     },
     "Treat": {
         1: "Severity",
+        2: "Random",
         0: "",
     },
     "Operate": {
         1: "Severity",
         2: "ArriveTime",
         3: "InjuryType",
+        4: "Random",
         0: "",
     },
     "Release": {
