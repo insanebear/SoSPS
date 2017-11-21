@@ -8,6 +8,10 @@ import itertools
 import json
 import os, shutil
 import time
+import logging
+
+# FRAMEWORK_LOG = './framework.log'
+
 # create class - first: name, second: base, rest params: variable and values
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)      # policy set class
@@ -32,14 +36,20 @@ toolbox.register("mate", tools.cxTwoPoint)
 toolbox.register("mutate_ack", mut_policy_multi, m_portion=0.1)
 toolbox.register("mutate_multi", mut_policy_multi, m_portion=0.1)
 toolbox.register("mutate_d", mut_policy_directed, m_portion=0.1)
-toolbox.register("select", tools.selTournament, tournsize=5)
+toolbox.register("select", tools.selRoulette)
+# toolbox.register("select", tools.selTournament, tournsize=5)
 toolbox.register("evaluate", policy_eval.evaluate)
 
 
 def main(type_SoS):
+    # if os.path.exists("./framework.log"):
+    #     os.remove("./framework.log")
+    # logging.basicConfig(filename=FRAMEWORK_LOG, format='%(message)s', level=logging.DEBUG)
+
     # Generate a population of 'policy_set'
     if os.path.exists("./simulation.log"):
         os.remove("./simulation.log")
+
     folder = './json/candidates'
     for the_file in os.listdir(folder):
         file_path = os.path.join(folder, the_file)
@@ -50,7 +60,11 @@ def main(type_SoS):
         except Exception as e:
             print(e)
 
+    # logstr = ">> Framework Start. SoS type: "+type_SoS
+    # logging.debug(logstr)
+    # print(logstr)
     print(">> Framework Start. SoS type: ", type_SoS)
+
     if type_SoS == "D":
         p_population = toolbox.population_d(n=20)
         prev_policy_file = Path("./json/candidates/prev_policy_D.json")
@@ -60,6 +74,11 @@ def main(type_SoS):
     else:
         p_population = toolbox.population_multi(n=20)
         prev_policy_file = Path("./json/candidates/prev_policy_multi.json")
+
+    # logstr = ">> Initial population is generated. Population size: "+str(len(p_population))
+    # logging.debug(logstr)
+    # print(logstr)
+
     print(">> Initial population is generated. Population size: ", len(p_population))
 
     if prev_policy_file.is_file():
@@ -72,16 +91,32 @@ def main(type_SoS):
     POP = len(p_population)
 
     # Evaluate the entire population
+    # logstr = ">> Evaluate the initial population."
+    # logging.debug(logstr)
+    # print(logstr)
     print(">> Evaluate the initial population.")
+
     # fitnesses = map(toolbox.evaluate, p_population)
-    fitnesses = map(toolbox.evaluate, p_population, range(0, POP - 1), itertools.repeat(0, POP))
+    fitnesses = map(toolbox.evaluate, p_population, range(0, POP), itertools.repeat(0, POP))
     for ind, fit in zip(p_population, fitnesses):
         ind.fitness.values = fit
+    # logstr = ">> Finish the evaluation of the initial population."
+    # logging.debug(logstr)
+    # print(logstr)
     print(">> Finish the evaluation of the initial population.")
+
     best = []
     for g in range(NGEN):
+        # logstr = "<<<<Generation: " + str(g) + ">>>>"
+        # logging.debug(logstr)
+        # print(logstr)
         print("<<<<Generation: ", g, ">>>>")
+
+        # logstr = "Population Length: " + str(len(p_population))
+        # logging.debug(logstr)
+        # print(logstr)
         print("Population Length: ", len(p_population))
+
         # Select the next generation individuals
         # best_cand = sorted(p_population, key=attrgetter("fitness"), reverse=True)[0:int(POP*BEST_PORTION)]
 
@@ -95,15 +130,30 @@ def main(type_SoS):
             if cand_fitness > current_fitness:
                 best = best_cand
 
+        # logstr = "Best length: " + str(len(best))
+        # logging.debug(logstr)
+        # print(logstr)
+        # logstr = "Current Best: " + str(best[0].fitness.values[0])
+        # logging.debug(logstr)
+        # print(logstr)
+        # logstr = "Pop fits: "+ print_fitness(p_population)
+        # logging.debug(logstr)
+        # logstr = "Selection..."
+        # logging.debug(logstr)
+        # print(logstr)
         print("Best length: ", len(best))
         print("Current Best: ", best[0].fitness.values[0])
-        print("Pop fits:", end=" ")
+        print("Pop fits: ", end=" ")
         print_fitness(p_population)
         print("Selection...")
+
         # offspring = toolbox.select(p_population, len(p_population)-int(POP*BEST_PORTION))
         offspring = toolbox.select(p_population, len(p_population))
         # Clone the selected individuals
         offspring = list(map(toolbox.clone, offspring))
+        # logstr = "Crossover..."
+        # logging.debug(logstr)
+        # print(logstr)
         print("Crossover...")
         # Apply crossover and mutation on the offspring
         for child1, child2 in zip(offspring[::2], offspring[1::2]):
@@ -112,6 +162,9 @@ def main(type_SoS):
                 toolbox.mate(child1, child2)
                 del child1.fitness.values
                 del child2.fitness.values
+        # logstr = "Mutation..."
+        # logging.debug(logstr)
+        # print(logstr)
         print("Mutation...")
         for mutant in offspring:
             if random.random() < MUTPB:
@@ -122,32 +175,46 @@ def main(type_SoS):
                 else:
                     toolbox.mutate_multi(mutant)
                 del mutant.fitness.values
+        # logstr = "Re-evaluation..."
+        # logging.debug(logstr)
+        # print(logstr)
         print("Re-evaluation...")
         # Evaluate the individuals with an invalid fitness
         invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
         # fitnesses = map(toolbox.evaluate, invalid_ind)
-        fitnesses = map(toolbox.evaluate, invalid_ind, range(0, len(p_population)-1), itertools.repeat(g, len(invalid_ind)))
+        fitnesses = map(toolbox.evaluate, invalid_ind, range(0, len(p_population)), itertools.repeat(g, len(invalid_ind)))
         for ind, fit in zip(invalid_ind, fitnesses):
             ind.fitness.values = fit
         # The population is entirely replaced by the offspring
         p_population[:] = offspring
 
     p_population[:] = offspring + best
+
     print()
     print("Total length: ", len(p_population))
+    # logstr = ""
+    # logging.debug(logstr)
+    # print(logstr)
+    # logstr = "Total length: " + str(len(p_population))
+    # logging.debug(logstr)
+    # print(logstr)
+
     return p_population
 
 
 def print_fitness(individuals):
+    logstr = ""
     s_individuals = sorted(individuals, key=attrgetter("fitness"), reverse=True)
     for ind in s_individuals:
+        # logstr += str(ind.fitness.values) + "%, "
         print(ind.fitness.values, "%", end=" ")
     print()
+    # return logstr
 
 
 def print_individual(individuals):
     for ind in individuals:
-        print("*", ind)
+        logging.debug(print("*", ind))
 
 
 if __name__ == '__main__':
@@ -166,7 +233,7 @@ if __name__ == '__main__':
     result_pop = main(type_SoS)
 
     for ind in result_pop:
-        print(ind.fitness.values),
+        logging.debug(print(ind.fitness.values))
 
     s_inds = sorted(result_pop, key=attrgetter("fitness"), reverse=True)
 
@@ -176,5 +243,18 @@ if __name__ == '__main__':
     json_handle.make_policy_json("output_policy.json", s_inds[0])
 
     print("RESULT")
+    print()
     print_fitness(s_inds)
     print("Total running time: ", running_time/100)
+
+    # logstr = "RESULT"
+    # logging.debug(logstr)
+    # print(logstr)
+    # logstr = ""
+    # logging.debug(logstr)
+    # print(logstr)
+    #
+    # logstr = print_fitness(s_inds)
+    # logging.debug(logstr)
+    # logstr = "Total running time: " + str(running_time/100)
+    # logging.debug(logstr)

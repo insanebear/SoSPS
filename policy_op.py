@@ -91,7 +91,7 @@ action_cond_map = {
 
 }
 
-action_cond_map2 = {        # TODO Add compliance policy condition
+action_cond_map2 = {
     # value: indices
     6: [1, 3],  # Select
     7: [1, 3],  # Stage
@@ -138,6 +138,103 @@ def make_combination_comp(action):
     return list(itertools.product(*conditions))
 
 
+# def gen_individual_ack():
+#     policy_set = list()
+#     # action policies
+#     for role in value_map[5]:  # role = 1, 2, 3
+#         policy_type = 1
+#         for action in role_action_map[role]:
+#             combinations = make_combination(action)
+#             for combination in combinations:
+#                 policy = [None] * 18
+#                 policy[0] = policy_type
+#                 policy[5] = role
+#                 policy[17] = 0
+#                 policy[action] = select_value_by_idx(action)  # set action method on action name
+#                 # condition
+#                 for cond, cond_value in zip(action_cond_map[action], combination):
+#                     policy[cond] = cond_value
+#                 # method value
+#                 if policy[11] is not None or policy[14] is not None:
+#                     policy[15] = select_value_by_idx(15)
+#                 # make rest of indices to invalid(-1)
+#                 for pol_idx in range(0, len(policy)):
+#                     if policy[pol_idx] is None:
+#                         policy[pol_idx] = -1
+#                 # print(policy)
+#                 policy_set.append(policy)
+#
+#     # compliance policies
+#     for role in value_map[5]:
+#         policy_type = 2
+#         for action in role_action_map[role]:
+#             combinations = make_combination_comp(action)
+#             for combination in combinations:
+#                 policy = [None] * 18
+#                 policy[0] = policy_type
+#                 policy[5] = role
+#                 policy[16] = select_value_by_idx(16)  # compliance value
+#                 policy[action] = 0  # mark on action
+#                 for cond, cond_value in zip(action_cond_map2[action], combination):
+#                     policy[cond] = cond_value
+#                 # for cond_value in value_map[1]:  # MCI level condition
+#                 #     policy[1] = cond_value
+#
+#                 # make the rest of indices to invalid (-1)
+#                 for pol_idx in range(0, len(policy)):
+#                     if policy[pol_idx] is None:
+#                         policy[pol_idx] = -1
+#                 policy_set.append(policy)
+#     return policy_set
+#
+#
+# def gen_individual_multi():   #
+#     policy_set = list()
+#     # action policies
+#     for role in value_map[5]:   # role = 1, 2, 3
+#         policy_type = 1
+#         for action in role_action_map[role]:
+#             combinations = make_combination(action)
+#             for combination in combinations:
+#                 policy = [None] * 18
+#                 policy[0] = policy_type
+#                 policy[5] = role
+#                 policy[17] = select_value_by_idx(17)    # enforce or not
+#                 policy[action] = select_value_by_idx(action)    # set action method on action name
+#                 # condition
+#                 for cond, cond_value in zip(action_cond_map[action], combination):
+#                     policy[cond] = cond_value
+#                 # method value
+#                 if policy[11] is not None or policy[14] is not None:
+#                     policy[15] = select_value_by_idx(15)
+#                 # make rest of indices to invalid(-1)
+#                 for pol_idx in range(0, len(policy)):
+#                     if policy[pol_idx] is None:
+#                         policy[pol_idx] = -1
+#                 # print(policy)
+#                 policy_set.append(policy)
+#     # compliance policies
+#     for role in value_map[5]:
+#         policy_type = 2
+#         for action in role_action_map[role]:
+#             combinations = make_combination_comp(action)
+#             for combination in combinations:
+#                 policy = [None] * 18
+#                 policy[0] = policy_type
+#                 policy[5] = role
+#                 policy[16] = select_value_by_idx(16)  # compliance value
+#                 policy[action] = 0  # mark on action
+#                 for cond, cond_value in zip(action_cond_map2[action], combination):
+#                     policy[cond] = cond_value
+#
+#                 # make the rest of indices to invalid (-1)
+#                 for pol_idx in range(0, len(policy)):
+#                     if policy[pol_idx] is None:
+#                         policy[pol_idx] = -1
+#                 policy_set.append(policy)
+#
+#     return policy_set
+
 def gen_individual_ack():
     policy_set = list()
     # action policies
@@ -168,17 +265,13 @@ def gen_individual_ack():
     for role in value_map[5]:
         policy_type = 2
         for action in role_action_map[role]:
-            combinations = make_combination_comp(action)
-            for combination in combinations:
-                policy = [None] * 18
-                policy[0] = policy_type
-                policy[5] = role
-                policy[16] = select_value_by_idx(16)  # compliance value
-                policy[action] = 0  # mark on action
-                for cond, cond_value in zip(action_cond_map2[action], combination):
-                    policy[cond] = cond_value
-                # for cond_value in value_map[1]:  # MCI level condition
-                #     policy[1] = cond_value
+            policy = [None] * 18
+            policy[0] = policy_type
+            policy[5] = role
+            policy[16] = select_value_by_idx(16)  # compliance value
+            policy[action] = 0  # mark on action
+            for cond_value in value_map[1]:  # MCI level condition
+                policy[1] = cond_value
 
                 # make the rest of indices to invalid (-1)
                 for pol_idx in range(0, len(policy)):
@@ -217,17 +310,15 @@ def gen_individual_multi():   #
     for role in value_map[5]:
         policy_type = 2
         for action in role_action_map[role]:
-            combinations = make_combination_comp(action)
-            for combination in combinations:
-                policy = [None] * 18
-                policy[0] = policy_type
-                policy[5] = role
-                policy[16] = select_value_by_idx(16)  # compliance value
-                policy[action] = 0  # mark on action
-                for cond, cond_value in zip(action_cond_map2[action], combination):
-                    policy[cond] = cond_value
+            policy = [None] * 18
+            policy[0] = policy_type
+            policy[5] = role
+            policy[16] = select_value_by_idx(16)        # compliance value
+            policy[action] = 0      # mark on action
+            for cond_value in value_map[1]:            # MCI level condition
+                policy[1] = cond_value
 
-                # make the rest of indices to invalid (-1)
+            # make the rest of indices to invalid (-1)
                 for pol_idx in range(0, len(policy)):
                     if policy[pol_idx] is None:
                         policy[pol_idx] = -1
