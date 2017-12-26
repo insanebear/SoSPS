@@ -3,7 +3,7 @@ import logging
 import subprocess
 from json_handle import make_policy_json
 
-SIMUL_LOG = 'simulation.log'
+SIMUL_LOG = './json/simulation.log'
 
 # def evaluate(indiv_poli_set):
 def evaluate(indiv_poli_set, file_num, gen_num):
@@ -15,11 +15,13 @@ def evaluate(indiv_poli_set, file_num, gen_num):
     logging.basicConfig(filename=SIMUL_LOG, format='%(message)s', level=logging.DEBUG)
     # logging.basicConfig(filename=SIMUL_LOG, level=logging.DEBUG)
 
-    command = "java -jar SIMVASoS-MCI.jar ./json/candidates/"
+    # command = "java -jar SIMVASoS-MCI_original.jar ./json/candidates/"
+    # command = "java -jar SIMVASoS-MCI_NotExcluded.jar ./json/candidates/"
+    command = "java -jar SIMVASoS-MCI_NotExcluded_NewComp.jar ./json/candidates/"
     # file_name = "cand_poli_set.json"
     file_name = str(gen_num)+"_cand_poli_set" + str(file_num) + ".json"
     # file_name = "archivedPolicy.json
-    n_simulation = 100
+    n_simulation = 50
     total_command = command+file_name+" "+str(n_simulation)
 
     make_policy_json(file_name, indiv_poli_set)

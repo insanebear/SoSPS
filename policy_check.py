@@ -204,3 +204,20 @@ def get_policy_val_list(idx_list, policy):
     for i in idx_list:
         result.append(policy[i])
     return result
+
+
+def check_full_description(policy, policy_elem):
+    for idx in policy_elem:
+        if policy[idx] == -1:
+            return False
+    return True
+
+def check_one_description(policy, policy_elem):
+    condition = list()
+    for idx in policy_elem:
+        if policy[idx] != -1:
+            condition.append(idx)
+
+    if len(condition) != 1:
+        return False
+    return True
